@@ -52,3 +52,5 @@ Aplikacja do uruchomienia będzie wymagała systemu z zainstalowanym środowiski
 #### Wykres Gantta
 ![Czas rozpoczęcia i Czas trwania ](https://user-images.githubusercontent.com/48072394/83982686-da088980-a928-11ea-8f96-a7c7b8d5d832.png)
 
+## Schemat modeli bazodanowych i metod interakcji między obiektami
+![Untitled Diagram-Page-1](https://user-images.githubusercontent.com/48072394/83982880-5cde1400-a92a-11ea-93bb-5393b458a868.png)
