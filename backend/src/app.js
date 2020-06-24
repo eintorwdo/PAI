@@ -2,6 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const passport = require('passport');
+const passportConfig = require('./passport/passportConfig.js');
+const cookieSession = require('cookie-session');
 
 // db connection
 const { dbConnect } =  require('./db/dbConnect.js');
@@ -13,8 +16,14 @@ const authRouter = require('./routes/AuthRouter.js');
 dbConnect().then(connection => {
     console.log("Connected to db");
 
+    app.use(cookieSession({
+        maxAge: 24 * 60 * 60 * 1000,
+        keys: [process.env.COOKIE_KEY]
+    }))
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(passport.initialize());
+    app.use(passport.session());
     app.use('/api', modelRouter);
     app.use('/auth', authRouter);
     app.use('*', (req, res) => {
