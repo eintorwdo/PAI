@@ -1,4 +1,4 @@
-const mongoose = require('mognoose');
+const mongoose = require('mongoose');
 
 const ParkingSpaceSchema = new mongoose.Schema({
     isOccupied: {
@@ -13,4 +13,4 @@ const ParkingSpaceSchema = new mongoose.Schema({
 });
 
 const ParkingSpace = mongoose.model('ParkingSpace', ParkingSpaceSchema);
-module.exports = { ParkingSpace };
+module.exports = ParkingSpace;

@@ -1,4 +1,4 @@
-const mongoose = require('mognoose');
+const mongoose = require('mongoose');
 
 const PlanSchema = new mongoose.Schema({
     duration: {         //days
@@ -14,4 +14,4 @@ const PlanSchema = new mongoose.Schema({
 });
 
 const Plan = mongoose.model('Plan', PlanSchema);
-module.exports = { Plan };
+module.exports = Plan;

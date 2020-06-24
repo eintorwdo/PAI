@@ -1,4 +1,4 @@
-const mongoose = require('mognoose');
+const mongoose = require('mongoose');
 
 const ParkingLotSchema = new mongoose.Schema({
     city: {
@@ -22,4 +22,4 @@ const ParkingLotSchema = new mongoose.Schema({
 });
 
 const ParkingLot = mongoose.model('ParkingLot', ParkingLotSchema);
-module.exports = { ParkingLot };
+module.exports = ParkingLot;

@@ -1,4 +1,4 @@
-const mongoose = require('mognoose');
+const mongoose = require('mongoose');
 
 const CarSchema = new mongoose.Schema({
     make: {
@@ -22,4 +22,4 @@ const CarSchema = new mongoose.Schema({
 });
 
 const Car = mongoose.model('Car', CarSchema);
-module.exports = { Car };
+module.exports = Car;
