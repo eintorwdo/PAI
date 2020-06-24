@@ -18,9 +18,8 @@ dbConnect().then(connection => {
     app.use('*', (req, res) => {
         res.status(404).json({message: "not found"});
     });
-
+    
     const port = process.env.PORT || 9000;
-
     app.listen(port, () => {
         console.log(`Listening at port ${port}`)
     });
