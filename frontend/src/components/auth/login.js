@@ -8,8 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import history from "../../history";
-
-
+import {login} from "../../Api/AuthApi";
+import Cookies from 'js-cookie'
+import {inject, observer} from "mobx-react";
 const useStyles = makeStyles((theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -33,13 +34,29 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Login() {
+function Login(props) {
     const classes = useStyles();
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const loginhandle = async(e)=>{
         e.preventDefault()
-        console.log()
+        console.log(email,password)
+        let obj = {email:email,password:password}
+        let data = await login(obj).then(data=>{
+            if (data.status > 400) {
+                alert("Brak uzytkownika")
+                return null
+            }
+            return data.json()
+        })
+        if (data !== null) {
+            props.mainStore.setLogged(true)
+            console.log(data)
+            Cookies.set("user",data.user)
+            history.push('/')
+        }
+
+
     }
     return (
         <Container component="main" maxWidth="xs">
@@ -51,7 +68,7 @@ export default function Login() {
                 <Typography component="h1" variant="h5">
                     Login
                 </Typography>
-                <form className={classes.form} onSubmit= noValidate>
+                <form className={classes.form} onSubmit={(e)=>loginhandle(e)} noValidate>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -101,3 +118,6 @@ export default function Login() {
         </Container>
     );
 }
+export default inject(stores => ({
+    mainStore: stores.mainStore
+}))(observer(Login))

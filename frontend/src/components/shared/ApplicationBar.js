@@ -9,6 +9,7 @@ import Cookies from 'js-cookie'
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import {inject,observer} from "mobx-react";
+import {logout} from "../../Api/AuthApi";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,6 +29,7 @@ function ApplicationBar(props) {
     const logouthandle = ()=>{
         Cookies.remove('user')
         props.mainStore.setLogged(false)
+        logout()
         history.push('/')
     }
 

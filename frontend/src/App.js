@@ -10,6 +10,7 @@ import MainStore from "./store/MainStore";
 import PrivateRoute from "./components/shared/PrivateRoute";
 import User from "./components/user/User";
 import AddingCarForm from "./components/car/AddingCarForm";
+import AdminComponent from "./components/user/admin/AdminComponent";
 function App(props) {
     let user = Cookies.getJSON('user')
     let stores = {
@@ -23,6 +24,7 @@ function App(props) {
                 <Route path='/register' component={register}/>
                 <PrivateRoute path='/user' component={User}/>
                 <PrivateRoute path='/addcar' component={AddingCarForm}/>
+                <AdminComponent/>
             </div>
         </Provider>
     );

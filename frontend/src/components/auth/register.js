@@ -49,10 +49,19 @@ function SignUp(props) {
             return
         }
         const obj = {email:email,password:password}
-        //await register(obj).then(dane=>{console.log(dane)})
-        Cookies.set('user',obj)
-        history.push('/')
+        let data = await register(obj).then(request=>{
+            if(request.status ===400){
+                alert("Email zajety")
+                return
+            }
+            else if (request.status === 200){
+                return request.json()
+            }
+            return null
+        })
+        Cookies.set('user',data)
         props.mainStore.setLogged(true)
+        history.push('/')
     }
     return (
         <Container component="main" maxWidth="xs">
