@@ -24,14 +24,18 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save', function(next) {
     var user = this;
-    // only hash the password if it has been modified (or is new)
-    if (!user.isModified('password')) return next();
-    // hash the password using our new salt
+    console.log('test')
     bcrypt.hash(user.password, 10, function(err, hash) {
         if (err) return next(err);
         user.password = hash;
         next();
     });
+});
+
+UserSchema.pre('findOneAndUpdate', async function(next) {
+    const newPassword = await bcrypt.hash(this.getUpdate().password, 10);
+    this.findOneAndUpdate({}, { password: newPassword });
+    next();
 });
 
 
