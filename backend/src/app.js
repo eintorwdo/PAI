@@ -5,22 +5,23 @@ const app = express();
 const passport = require('passport');
 const passportConfig = require('./passport/passportConfig.js');
 const cookieSession = require('cookie-session');
-const cors = require("cors")
+const cors = require('cors');
+
 // db connection
 const { dbConnect } =  require('./db/dbConnect.js');
 
 // controllers
 const modelRouter = require('./routes/ModelRouter.js');
 const authRouter = require('./routes/AuthRouter.js');
-app.use(cors({credentials:true,origin:true}))
 
 dbConnect().then(connection => {
     console.log("Connected to db");
 
+    app.use(cors({credentials: true, origin: true}));
     app.use(cookieSession({
         maxAge: 24 * 60 * 60 * 1000,
         keys: [process.env.COOKIE_KEY]
-    }))
+    }));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(passport.initialize());
