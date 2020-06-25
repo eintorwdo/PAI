@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ApplicationBar from "./components/shared/ApplicationBar";
+import Login from "./components/auth/login";
+import {Route} from 'react-router-dom'
+import register from "./components/auth/register";
+import {Provider} from "mobx-react";
+import Cookies from 'js-cookie'
+import MainStore from "./store/MainStore";
+import PrivateRoute from "./components/shared/PrivateRoute";
+import User from "./components/user/User";
+import AddingCarForm from "./components/car/AddingCarForm";
+import AdminComponent from "./components/user/admin/AdminComponent";
+function App(props) {
+    let user = Cookies.getJSON('user')
+    let stores = {
+        mainStore: new MainStore(user ? user : null)
+    }
+    return (
+        <Provider {...stores}>
+            <div className="App">
+                <ApplicationBar/>
+                <Route path='/login' component={Login}/>
+                <Route path='/register' component={register}/>
+                <PrivateRoute path='/user' component={User}/>
+                <PrivateRoute path='/addcar' component={AddingCarForm}/>
+                <AdminComponent/>
+            </div>
+        </Provider>
+    );
 }
 
 export default App;
