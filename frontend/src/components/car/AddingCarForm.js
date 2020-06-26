@@ -68,7 +68,7 @@ export default function AddingCarForm(props) {
                         <Button type='submit'
                                 className={classes.formButton}
                                 variant='contained'
-                                color='primary'>Add new car</Button>
+                                color='primary'>Edit user</Button>
                     </Grid>
                 </Grid>
             </form>

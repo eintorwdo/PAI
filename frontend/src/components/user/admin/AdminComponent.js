@@ -6,6 +6,7 @@ import ParkingSpaceEdit from "./ParkingSpaceEdit";
 import AdministrationRoute from "../../shared/AdministrationRoute";
 import CreateParkingForm from "../../Parking/CreateParkingForm";
 import UserEdit from "./UserEdit";
+import EditUserForm from "./EditUserForm";
 export default function AdminComponent(props){
     return (
         <div>
@@ -14,6 +15,7 @@ export default function AdminComponent(props){
             <AdministrationRoute path='/editparkingspace' component={ParkingSpaceEdit} />
             <AdministrationRoute path='/createparking' component={CreateParkingForm}/>
             <AdministrationRoute path='/editusers' component={UserEdit}/>
+            <AdministrationRoute path='/edituser/:id' component={EditUserForm}/>
         </div>
     )
 }

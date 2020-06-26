@@ -7,7 +7,6 @@ import PersonIcon from '@material-ui/icons/Person';
 import UserTabPanel from "./UserTabPanel";
 import Cookies from 'js-cookie'
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 
 export default function User(props) {
     return (

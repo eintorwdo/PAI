@@ -8,6 +8,9 @@ const fetchObject = {
     credentials:"include",
     method: "GET"
 }
+function getLink(string){
+    return `http://localhost:9000/${string}`
+}
 function createFetchObject(obj) {
     return {
         headers: {
@@ -19,4 +22,15 @@ function createFetchObject(obj) {
         body: JSON.stringify(obj)
     }
 }
-export {fetchObject,createFetchObject}
+function createFetchObjectPut(obj){
+    return {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        credentials:"include",
+        method: "PUT",
+        body: JSON.stringify(obj)
+    }
+}
+export {fetchObject,createFetchObject,getLink,createFetchObjectPut  }
