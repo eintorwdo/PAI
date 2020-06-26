@@ -33,4 +33,14 @@ function createFetchObjectPut(obj){
         body: JSON.stringify(obj)
     }
 }
-export {fetchObject,createFetchObject,getLink,createFetchObjectPut  }
+const fetchObjectDelete = {
+    mode: "cors",
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
+    },
+    credentials:"include",
+    method: "DELETE"
+}
+export {fetchObject,createFetchObject,getLink,createFetchObjectPut,fetchObjectDelete }

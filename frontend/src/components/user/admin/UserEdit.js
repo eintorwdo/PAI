@@ -1,6 +1,6 @@
 import React, {useEffect, useState, Component} from "react";
 import Container from "@material-ui/core/Container";
-import {getUsers} from "../../../Api/UserApi";
+import {getUsers,deleteUser} from "../../../Api/UserApi";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -26,6 +26,7 @@ export default class UserEdit extends Component {
         this.state = {
             users: []
         }
+        this.deleteuserHandle = this.deleteuserHandle.bind(this)
     }
 
     async componentDidMount() {
@@ -38,6 +39,29 @@ export default class UserEdit extends Component {
             this.setState({users:data.users})
         }
     }
+    async deleteuserHandle(e,id){
+        e.preventDefault()
+        console.log(id)
+        let dane = await deleteUser(id).then(request=>{
+            if(request.status < 300)
+                return request.json()
+            return null
+        })
+        if (dane ===null){
+            alert("Problem podczas usuwania uzytkownika")
+            return
+        }
+        let datatmp = await getUsers().then(request=>{
+            if(request.status > 300)
+                return null
+            return request.json()
+        })
+        if(datatmp !== null){
+            this.setState({users:datatmp.users})
+        }
+        history.push('/editusers')
+    }
+
 
     render() {
         return(
@@ -52,7 +76,7 @@ export default class UserEdit extends Component {
                                 <Typography>Role : {user.role}</Typography>
                                 <ButtonGroup style={useStyles.buttongroup}>
                                     <Button onClick={() => history.push(`/edituser/${user._id}`)}>Edytuj</Button>
-                                    <Button>Usuń</Button>
+                                    <Button onClick={(e)=>this.deleteuserHandle(e,user._id)}>Usuń</Button>
                                 </ButtonGroup>
                             </Paper>
                         </Grid>
