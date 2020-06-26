@@ -4,4 +4,8 @@ async function getPlans() {
     let url = getLink('api/plans')
     return await fetch(url,fetchObject)
 }
-export {getPlans}
+async function createPlan(obj){
+    let url = getLink('api/plan')
+    return await fetch(url,createFetchObject(obj))
+}
+export {getPlans,createPlan}

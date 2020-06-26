@@ -7,7 +7,6 @@ import Typography from "@material-ui/core/Typography";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import history from "../../../history";
-
 const useStyles = {
     paper: {
         padding: ".5rem",
