@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const ParkingLotSchema = new mongoose.Schema({
     city: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     address: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     numberOfSpaces: {
         type: Number,
