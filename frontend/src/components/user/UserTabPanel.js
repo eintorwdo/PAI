@@ -47,12 +47,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function UserTabPanel() {
+export default function UserTabPanel(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        console.log(props.userId)
     };
 
     return (
@@ -69,7 +70,7 @@ export default function UserTabPanel() {
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
-                <UserCars/>
+                <UserCars userId={props.userId}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 Item Two

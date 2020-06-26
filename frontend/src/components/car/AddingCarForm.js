@@ -7,6 +7,9 @@ import Avatar from '@material-ui/core/Avatar';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import Cookies from "js-cookie";
+import {addCarToDatabase} from "../../Api/CarApi";
+import history from "../../history";
 
 const useStyles = makeStyles((theme) => ({
     first: {marginTop: "1.5rem"},
@@ -21,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: "center"
     },
-    formButton:{
-        marginTop:"1.2rem"
+    formButton: {
+        marginTop: "1.2rem"
     }
 
 }))
@@ -30,11 +33,33 @@ export default function AddingCarForm(props) {
     const classes = useStyles()
     const [carMark, setCarMark] = useState("")
     const [carModel, setCarModel] = useState("")
+    const [regNumber, setRegNumber] = useState("")
+    const [user, setUser] = useState(Cookies.getJSON('user'))
+
     const carraddinghandle = async (e) => {
         e.preventDefault()
-        console.log(carMark, carModel)
         let addDate = new Date().toISOString().slice(0, 10)
-        console.log(addDate)
+        console.log(carMark, carModel, regNumber, user.id)
+        let obj = {
+            make: carMark,
+            model: carModel,
+            regNumber: regNumber
+        }
+        let data = await addCarToDatabase(obj).then(request=>{
+            if(request.status < 300)
+                return request.json()
+            else if(request.status === 400){
+                alert("Car with such registration number is already in database")
+                return {}
+            }
+             return null
+        })
+        if (data !== null)
+            history.push("/")
+        else if(data === null) {
+            alert("problem z dodaniem samochodu")
+            return
+        }
     }
     return (
         <Container className={classes.first}>
@@ -56,7 +81,7 @@ export default function AddingCarForm(props) {
                                    onChange={(e) => setCarMark(e.target.value)}
 
                         />
-                        <TextField id='carbrand'
+                        <TextField id='carmodel'
                                    variant='outlined'
                                    margin='normal'
                                    label='Car model'
@@ -65,10 +90,19 @@ export default function AddingCarForm(props) {
                                    onChange={(e) => setCarModel(e.target.value)}
 
                         />
+                        <TextField id='reqnumber'
+                                   variant='outlined'
+                                   margin='normal'
+                                   label='Reginal number'
+                                   fullWidth
+                                   required
+                                   onChange={(e) => setRegNumber(e.target.value)}
+
+                        />
                         <Button type='submit'
                                 className={classes.formButton}
                                 variant='contained'
-                                color='primary'>Edit user</Button>
+                                color='primary'>Add car</Button>
                     </Grid>
                 </Grid>
             </form>
