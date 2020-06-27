@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 
+const ParkingSpaceSchema = new mongoose.Schema({
+    isOccupied: {
+        type: Boolean,
+        requried: true,
+        default: false
+    }
+});
+
 const ParkingLotSchema = new mongoose.Schema({
     city: {
         type: String,
@@ -20,8 +28,12 @@ const ParkingLotSchema = new mongoose.Schema({
         type: Number,
         required: true,
         min: 0
-    }
+    },
+    parkingSpaces: [
+        ParkingSpaceSchema
+    ]
 });
 
 const ParkingLot = mongoose.model('ParkingLot', ParkingLotSchema);
-module.exports = ParkingLot;
+const ParkingSpace = mongoose.model('ParkingSpace', ParkingSpaceSchema);
+module.exports = {ParkingLot, ParkingSpace};

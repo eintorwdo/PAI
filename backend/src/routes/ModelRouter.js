@@ -2,7 +2,7 @@ const { Router } = require('express');
 const User = require('../model/User.js');
 const Car = require('../model/Car.js');
 const Plan = require('../model/Plan.js');
-const ParkingLot = require('../model/ParkingLot.js');
+const {ParkingLot, ParkingSpace} = require('../model/ParkingLot.js');
 const router = Router();
 const checkLoggedIn = require('../middleware/checkLoggedIn.js');
 const checkAdmin = require('../middleware/checkAdmin.js');
@@ -75,7 +75,7 @@ router.put('/user/:id', checkLoggedIn, checkAdmin, validateCredentialsUpdate, as
 
 router.delete('/user/:id', checkLoggedIn, checkAdmin, async (req, res) => {
     try{
-        const user = await User.findByIdAndDelete(req.params.id);
+        const user = await User.deleteOne({_id: mongoose.Types.ObjectId(req.params.id)});
         if(user){
             res.status(200).json({user: getUserPreview(user)});
         }
@@ -208,12 +208,14 @@ router.post('/parkinglot', checkLoggedIn, checkAdmin, validateNewParkingLot, asy
                 city: req.body.city,
                 address: req.body.address,
                 numberOfSpaces: req.body.numberOfSpaces,
-                freeSpaces: req.body.numberOfSpaces
+                freeSpaces: req.body.numberOfSpaces,
+                parkingSpaces: Array.from({length: req.body.numberOfSpaces}, () => new ParkingSpace({isOccupied: false}))
             });
             await newParkingLot.save(newParkingLot);
             res.status(200).json({parkingLot: newParkingLot});
         }
         catch(e){
+            console.log(e)
             res.status(500).json({error: e});
         }
     }

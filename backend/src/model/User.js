@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
+const Car = require('./Car.js');
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -24,7 +25,7 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save', function(next) {
     var user = this;
-    console.log('test')
+    // console.log('test')
     bcrypt.hash(user.password, 10, function(err, hash) {
         if (err) return next(err);
         user.password = hash;
@@ -45,6 +46,12 @@ UserSchema.methods.validPassword = function (password, cb) {
         cb(null, result);
     });
 }
+
+UserSchema.pre('deleteOne', async function(next) {
+    const userID = this.getFilter()["_id"];
+    await Car.deleteMany({userID});
+    next();
+});
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
