@@ -8,7 +8,8 @@ import history from "../../history";
 
 const useStyles = makeStyles({
     root: {
-        marginTop:"1rem"
+        marginTop:"1rem",
+        cursor:"pointer"
     },
     bullet: {
         display: 'inline-block',

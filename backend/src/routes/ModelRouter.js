@@ -181,7 +181,20 @@ router.post('/plan', checkLoggedIn, checkAdmin, validateNewPlan, async (req, res
         }
     }
 });
-
+router.get('/parkinglots', async (req, res) => {
+    try{
+        const parkingLot = await ParkingLot.find()
+        if(parkingLot){
+            res.status(200).json({parkingLot});
+        }
+        else{
+            res.status(404).json({error: 'Parking lot not found'});
+        }
+    }
+    catch(e){
+        res.status(500).json({error: e});
+    }
+});
 router.get('/parkinglot/:id', checkLoggedIn, async (req, res) => {
     try{
         const parkingLot = await ParkingLot.findById(req.params.id);
