@@ -3,8 +3,9 @@ const express = require('express')
 let router = express.Router()
 
 router.use([
-    body('email').isEmail().withMessage('Incorrect email'),
-    body('password').isLength({ min: 6 }).withMessage('Minimum length of 6 characters')
+    body('lotID').isMongoId().withMessage('Not a mongo id'),
+    body('carID').isMongoId().withMessage('Not a mongo id'),
+    body('planID').isMongoId().withMessage('Not a mongo id')
 ],(req, res, next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){

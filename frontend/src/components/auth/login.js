@@ -40,7 +40,6 @@ function Login(props) {
     const [password,setPassword] = useState("")
     const loginhandle = async(e)=>{
         e.preventDefault()
-        console.log(email,password)
         let obj = {email:email,password:password}
         let data = await login(obj).then(data=>{
             if (data.status > 400) {
@@ -51,7 +50,6 @@ function Login(props) {
         })
         if (data !== null) {
             props.mainStore.setLogged(true)
-            console.log(data)
             Cookies.set("user",data.user)
             history.push('/')
         }

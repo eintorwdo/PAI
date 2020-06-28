@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import Container from "@material-ui/core/Container";
-import Button from "@material-ui/core/Button";
-import history from "../../../history";
-import {getAllParkings} from "../../../Api/ParkingApi";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import {getAllParkings} from "../../Api/ParkingApi";
+import history from "../../history";
 
 const useStyles = {
     paper: {
@@ -19,7 +19,7 @@ const useStyles = {
 
 };
 
-export default class ParkingEdit extends Component{
+export default class Parkings extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,9 +37,12 @@ export default class ParkingEdit extends Component{
             this.setState({parkings: data.parkingLot})
         }
     }
+
+
     render() {
         return (
             <Container>
+                Parkings
                 <Grid container spacing={3}>
                     {this.state.parkings.map(park => {
                         return (
@@ -49,17 +52,12 @@ export default class ParkingEdit extends Component{
                                     <Typography>Address : {park.address}</Typography>
                                     <Typography>Number of spaces: {park.numberOfSpaces}</Typography>
                                     <Typography>Number of free spaces : {park.freeSpaces}</Typography>
-
+                                    <Button onClick={()=>history.push(`/parkingsubscriptions/${park._id}`)}>Buy subscription</Button>
                                 </Paper>
                             </Grid>
                         )
                     })}
                 </Grid>
-                <br/>
-                <Button variant='contained' onClick={()=>history.push('/createparking')}>Add parking</Button>
-            </Container>
-        )
+            </Container>)
     }
-
-
 }
