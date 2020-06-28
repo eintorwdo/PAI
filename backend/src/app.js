@@ -4,11 +4,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const passport = require('passport');
 const passportConfig = require('./passport/passportConfig.js');
+const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const cors = require('cors');
 
 // db connection
 const { dbConnect } =  require('./db/dbConnect.js');
+mongoose.set('useFindAndModify', false);
 
 // controllers
 const modelRouter = require('./routes/ModelRouter.js');
@@ -16,6 +18,8 @@ const authRouter = require('./routes/AuthRouter.js');
 
 dbConnect().then(connection => {
     console.log("Connected to db");
+
+    require('./utils/updateParkingSpaces.js');  //checks for expired subscriptions and updates free parking spaces every minute
 
     app.use(cors({credentials: true, origin: true}));
     app.use(cookieSession({

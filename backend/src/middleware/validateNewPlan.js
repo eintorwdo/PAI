@@ -3,8 +3,8 @@ const express = require('express')
 let router = express.Router()
 
 router.use([
-    body('duration').isNumeric().custom(value => value >= 1),
-    body('cost').isNumeric().custom(value => value >= 0)
+    body('duration').isInt({min: 1}).withMessage('Must be a positive int'),
+    body('cost').isNumeric().custom(value => value >= 0).withMessage('Must be a positive number')
 ],(req, res, next) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
