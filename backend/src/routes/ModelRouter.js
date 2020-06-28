@@ -290,7 +290,7 @@ router.post('/subscription', checkLoggedIn, validateNewSubscription, async (req,
         }
     }
 });
-router.get('/subscription/:userid', checkLoggedIn, async (req, res) => {
+router.get('/subscirptions/:userid', checkLoggedIn, async (req, res) => {
     if(req.user.role === 'ADMIN' || req.user.id === req.params.userid){
         try{
             const objectId = mongoose.Types.ObjectId(req.params.userid);

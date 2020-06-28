@@ -49,7 +49,7 @@ export default class ParkingEdit extends Component{
                                     <Typography>Address : {park.address}</Typography>
                                     <Typography>Number of spaces: {park.numberOfSpaces}</Typography>
                                     <Typography>Number of free spaces : {park.freeSpaces}</Typography>
-                                    
+
                                 </Paper>
                             </Grid>
                         )
