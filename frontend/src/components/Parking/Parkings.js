@@ -33,7 +33,6 @@ export default class Parkings extends Component {
                 return null
             return request.json()
         })
-        console.log(data)
         if (data !== null) {
             this.setState({parkings: data.parkingLot})
         }
@@ -53,7 +52,7 @@ export default class Parkings extends Component {
                                     <Typography>Address : {park.address}</Typography>
                                     <Typography>Number of spaces: {park.numberOfSpaces}</Typography>
                                     <Typography>Number of free spaces : {park.freeSpaces}</Typography>
-                                    <Button onClick={()=>history.push(`/reserveparking/${park._id}`)}>Buy subscription</Button>
+                                    <Button onClick={()=>history.push(`/parkingsubscriptions/${park._id}`)}>Buy subscription</Button>
                                 </Paper>
                             </Grid>
                         )

@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import Container from "@material-ui/core/Container";
 import {getCarByUserId} from "../../Api/CarApi";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
 import Typography from "@material-ui/core/Typography";
 const classes = {
     root: {
@@ -30,7 +29,6 @@ export default class UserCars extends Component {
                 return request.json()
             return null
         })
-        console.log(dane)
         if(dane!== null)
             this.setState({userCars:dane.cars})
     }

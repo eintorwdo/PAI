@@ -7,7 +7,6 @@ import Avatar from '@material-ui/core/Avatar';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import Cookies from "js-cookie";
 import {addCarToDatabase} from "../../Api/CarApi";
 import history from "../../history";
 
@@ -34,12 +33,9 @@ export default function AddingCarForm(props) {
     const [carMark, setCarMark] = useState("")
     const [carModel, setCarModel] = useState("")
     const [regNumber, setRegNumber] = useState("")
-    const [user, setUser] = useState(Cookies.getJSON('user'))
 
     const carraddinghandle = async (e) => {
         e.preventDefault()
-        let addDate = new Date().toISOString().slice(0, 10)
-        console.log(carMark, carModel, regNumber, user.id)
         let obj = {
             make: carMark,
             model: carModel,

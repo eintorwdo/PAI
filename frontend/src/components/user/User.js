@@ -9,7 +9,7 @@ import Cookies from 'js-cookie'
 import Typography from "@material-ui/core/Typography";
 
 export default function User(props) {
-    const [user, setUser] = useState(Cookies.getJSON('user'))
+    const [user] = useState(Cookies.getJSON('user'))
     return (
         <Container>
             <Container>
@@ -21,8 +21,6 @@ export default function User(props) {
             <ButtonGroup style={{marginTop: "3rem"}} size="large" color="primary"
                          aria-label="large outlined primary button group">
                 <Button onClick={() => history.push('/addcar')}>Add car</Button>
-                <Button>Renew subscriptions</Button>
-                <Button>OK</Button>
             </ButtonGroup>
             {(Cookies.getJSON('user').role === "ADMIN") ?
                 (
@@ -33,11 +31,7 @@ export default function User(props) {
                         <Button style={{margin: ".5rem"}} color='primary' variant='contained'
                                 onClick={() => history.push("/editsubscription")}>Edit subscription's</Button>
                         <Button style={{margin: ".5rem"}} color='primary' variant='contained'
-                                onClick={() => history.push("/editparkingspace")}>Edit parking space's</Button>
-                        <Button style={{margin: ".5rem"}} color='primary' variant='contained'
                                 onClick={() => history.push("/editusers")}>User's edit</Button>
-                        <Button style={{margin: ".5rem"}} color='primary' variant='contained'
-                                onClick={() => history.push("/editcars")}>Car's edit</Button>
 
                     </Container>
                 ) : (<div/>)

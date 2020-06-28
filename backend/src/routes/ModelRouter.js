@@ -290,5 +290,20 @@ router.post('/subscription', checkLoggedIn, validateNewSubscription, async (req,
         }
     }
 });
+router.get('/subscription/:userid', checkLoggedIn, async (req, res) => {
+    if(req.user.role === 'ADMIN' || req.user.id === req.params.userid){
+        try{
+            const objectId = mongoose.Types.ObjectId(req.params.userid);
+            const subscriptions = await Subscription.find({userID: objectId});
+            res.status(200).json({subscriptions});
+        }
+        catch(e){
+            res.status(500).json({error: e});
+        }
+    }
+    else{
+        res.status(401).json({error: 'Not authorized'});
+    }
+});
 
 module.exports = router

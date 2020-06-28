@@ -10,7 +10,6 @@ export default function CreatePlanForm(props){
     const [cost,setCost] = useState(1)
     const createPlanhandle = async(e)=>{
         e.preventDefault()
-        console.log(duration,cost)
         let obj = {duration:duration,cost:cost}
         let dane = createPlan(obj).then(request=>{
             if(request.status < 300)

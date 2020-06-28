@@ -64,7 +64,6 @@ export default class EditUserForm extends Component{
             return
         }
         let obj = {email:this.state.email,password: this.state.password,role:this.state.role}
-        console.log(obj)
         let dane = await editUser(this.props.match.params.id,obj).then(request=>{
             if(request.status < 300){
                 return request.json

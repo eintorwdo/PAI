@@ -1,4 +1,4 @@
-import {fetchObject,createFetchObjectPut,createFetchObject,getLink} from "./ApiConfig";
+import {fetchObject,createFetchObject,getLink} from "./ApiConfig";
 
 async function getCarByUserId(id) {
     let url = getLink(`api/cars/${id}`)

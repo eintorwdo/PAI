@@ -6,7 +6,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
-import history from "../../../history";
 const useStyles = {
     paper: {
         padding: ".5rem",
@@ -34,7 +33,6 @@ export default class CarsEdit extends Component{
                 return request.json()
             return null
         })
-        console.log(data)
         if (data !== null){
             this.setState({cars:data.cars})
         }

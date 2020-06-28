@@ -36,7 +36,6 @@ export default function CreateParkingForm(props) {
     const [freeSpaces,setFreeSpaces] = useState(0)
     const carraddinghandle = async (e) => {
         e.preventDefault()
-        console.log(address,city,spaces,freeSpaces)
         let obj = {
             city:city,
             address:address,
@@ -49,7 +48,7 @@ export default function CreateParkingForm(props) {
             return null
         })
         if (dane === null){
-            alert("Problem z serwerem lub bledne dane\n Miejsc powinno byc pomiedzy 1 a 50")
+            alert("Server error or\n Parking space must be beetwen 1 a 50\n Or too short addres name")
             return
         }
         history.push('/user')

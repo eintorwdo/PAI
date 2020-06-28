@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Component} from "react";
+import React, { Component} from "react";
 import Container from "@material-ui/core/Container";
 import {getUsers,deleteUser} from "../../../Api/UserApi";
 import Grid from "@material-ui/core/Grid";
@@ -41,7 +41,6 @@ export default class UserEdit extends Component {
     }
     async deleteuserHandle(e,id){
         e.preventDefault()
-        console.log(id)
         let dane = await deleteUser(id).then(request=>{
             if(request.status < 300)
                 return request.json()

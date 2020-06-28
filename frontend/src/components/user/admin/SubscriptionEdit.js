@@ -4,7 +4,6 @@ import {getPlans} from "../../../Api/PlanApi";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import history from "../../../history";
 const useStyles = {
@@ -31,7 +30,6 @@ export default class SubscriptionEdit extends Component {
                 return request.json()
             return null
         })
-        console.log(data)
         if (data !== null){
             this.setState({plans:data.plans})
         }
@@ -46,10 +44,6 @@ export default class SubscriptionEdit extends Component {
                                 <Paper style={useStyles.paper} key={plan._id}>
                                     <Typography>Duration : {plan.duration}</Typography>
                                     <Typography>Cost : {plan.cost}</Typography>
-                                    <ButtonGroup style={useStyles.buttongroup}>
-                                        <Button >Edytuj</Button>
-                                        <Button >Usuń</Button>
-                                    </ButtonGroup>
                                 </Paper>
                             </Grid>
                         )

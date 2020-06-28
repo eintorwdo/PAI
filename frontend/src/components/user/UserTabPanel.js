@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import UserCars from "./UserCars";
+import UserSubscriptions from "./UserSubscriptions";
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -53,7 +54,6 @@ export default function UserTabPanel(props) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        console.log(props.userId)
     };
 
     return (
@@ -73,7 +73,7 @@ export default function UserTabPanel(props) {
                 <UserCars userId={props.userId}/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                <UserSubscriptions userId={props.userId}/>
             </TabPanel>
         </div>
     );

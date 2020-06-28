@@ -1,4 +1,4 @@
-import {createFetchObject,createFetchObjectPut,fetchObject,getLink} from "./ApiConfig";
+import {createFetchObject,fetchObject,getLink} from "./ApiConfig";
 
 async function getAllParkings() {
     let url = getLink('api/parkinglots')
