@@ -25,7 +25,6 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save', function(next) {
     var user = this;
-    // console.log('test')
     bcrypt.hash(user.password, 10, function(err, hash) {
         if (err) return next(err);
         user.password = hash;
