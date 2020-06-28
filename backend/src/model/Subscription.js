@@ -28,6 +28,16 @@ const SubscriptionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ParkingSpace',
         required: true
+    },
+    carID: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Car',
+        required: true
+    },
+    expired: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 

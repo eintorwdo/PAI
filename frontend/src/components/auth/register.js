@@ -11,7 +11,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import history from "../../history";
 import {Alert} from '@material-ui/lab';
-import {register} from "../../Api/AuthApi";
+import {register,login} from "../../Api/AuthApi";
 import Cookies from 'js-cookie'
 import {inject, observer} from "mobx-react";
 const useStyles = makeStyles((theme) => ({
@@ -41,8 +41,6 @@ function SignUp(props) {
     const [alertOpen, setAlertOpen] = useState(0)
     const singuphandle = async (e) => {
         e.preventDefault()
-        console.log(email)
-        console.log(password)
         if (password.length < 6) {
             setAlertOpen(true)
             setTimeout(()=>setAlertOpen(false),2000)
@@ -59,9 +57,20 @@ function SignUp(props) {
             }
             return null
         })
-        Cookies.set('user',data)
-        props.mainStore.setLogged(true)
-        history.push('/')
+        if (data!== null){
+            let data2 = await login(obj).then(data=>{
+                if (data.status > 400) {
+                    alert("Brak uzytkownika")
+                    return null
+                }
+                return data.json()
+            })
+            if (data2 !== null) {
+                props.mainStore.setLogged(true)
+                Cookies.set("user",data2.user)
+                history.push('/')
+            }
+        }
     }
     return (
         <Container component="main" maxWidth="xs">

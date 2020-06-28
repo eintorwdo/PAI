@@ -11,6 +11,10 @@ import PrivateRoute from "./components/shared/PrivateRoute";
 import User from "./components/user/User";
 import AddingCarForm from "./components/car/AddingCarForm";
 import AdminComponent from "./components/user/admin/AdminComponent";
+import MainView from "./components/shared/MainView";
+import Plans from "./components/plan/plans";
+import Parkings from "./components/Parking/Parkings";
+import ReserveParking from "./components/Parking/ReserveParking";
 function App(props) {
     let user = Cookies.getJSON('user')
     let stores = {
@@ -20,8 +24,12 @@ function App(props) {
         <Provider {...stores}>
             <div className="App">
                 <ApplicationBar/>
+                <Route exact path={'/'} component={MainView}/>
                 <Route path='/login' component={Login}/>
                 <Route path='/register' component={register}/>
+                <Route path='/subscriptions' component={Plans}/>
+                <Route path='/parkings' component={Parkings}/>
+                <PrivateRoute path='/parkingsubscriptions/:id' component={ReserveParking}/>
                 <PrivateRoute path='/user' component={User}/>
                 <PrivateRoute path='/addcar' component={AddingCarForm}/>
                 <AdminComponent/>

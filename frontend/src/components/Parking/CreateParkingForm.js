@@ -7,6 +7,8 @@ import Avatar from '@material-ui/core/Avatar';
 import LocalParkingIcon from '@material-ui/icons/LocalParking';
 import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import {createParking} from "../../Api/ParkingApi";
+import history from "../../history";
 
 const useStyles = makeStyles((theme) => ({
     first: {marginTop: "1.5rem"},
@@ -34,8 +36,22 @@ export default function CreateParkingForm(props) {
     const [freeSpaces,setFreeSpaces] = useState(0)
     const carraddinghandle = async (e) => {
         e.preventDefault()
-        console.log(address,city,spaces,freeSpaces)
-
+        let obj = {
+            city:city,
+            address:address,
+            numberOfSpaces:spaces,
+            freeSpaces:freeSpaces
+        }
+        let dane = await createParking(obj).then(request=>{
+            if(request.status < 300)
+                return request.json()
+            return null
+        })
+        if (dane === null){
+            alert("Server error or\n Parking space must be beetwen 1 a 50\n Or too short addres name")
+            return
+        }
+        history.push('/user')
     }
     return (
         <Container className={classes.first}>
