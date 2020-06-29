@@ -1,0 +1,16 @@
+---
+services:
+  backend:
+    build: ./backend
+    command: "npm start"
+    ports:
+      - "9000:9000"
+  front:
+    stdin_open: true
+    build: ./frontend
+    command: "npm start"
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+version: "3"
