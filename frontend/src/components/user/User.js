@@ -27,11 +27,11 @@ export default function User(props) {
                     <Container style={{marginTop: "1.4rem"}}>
                         <Typography>Admin panel</Typography>
                         <Button style={{margin: ".5rem"}} color='primary' variant='contained'
-                                onClick={() => history.push("/editparking")}>Edit parking's</Button>
+                                onClick={() => history.push("/editparking")}>Edit parking lots</Button>
                         <Button style={{margin: ".5rem"}} color='primary' variant='contained'
-                                onClick={() => history.push("/editsubscription")}>Edit subscription's</Button>
+                                onClick={() => history.push("/editsubscription")}>Edit subscriptions</Button>
                         <Button style={{margin: ".5rem"}} color='primary' variant='contained'
-                                onClick={() => history.push("/editusers")}>User's edit</Button>
+                                onClick={() => history.push("/editusers")}>Edit users</Button>
 
                     </Container>
                 ) : (<div/>)

@@ -183,7 +183,7 @@ export default class Parkings extends Component {
                         >
                             {this.state.plans.map(plan=>(
                                 <MenuItem required key={plan._id} value={plan._id} style={{}}>
-                                    {["Czas trwania "+plan.duration,"Koszt "+plan.cost+" zl"].join(" ")}
+                                    {["Duration: "+plan.duration+" days, ","Price: "+plan.cost+" zl"].join(" ")}
                                 </MenuItem>
                             ))}
                         </Select>

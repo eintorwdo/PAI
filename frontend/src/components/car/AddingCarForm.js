@@ -70,7 +70,7 @@ export default function AddingCarForm(props) {
                     <Grid item xs={12} sm={6}>
                         <TextField id='carbrand'
                                    variant='outlined'
-                                   label='Car mark'
+                                   label='Car make'
                                    margin='normal'
                                    fullWidth
                                    required
@@ -89,7 +89,7 @@ export default function AddingCarForm(props) {
                         <TextField id='reqnumber'
                                    variant='outlined'
                                    margin='normal'
-                                   label='Reginal number'
+                                   label='Registration number'
                                    fullWidth
                                    required
                                    onChange={(e) => setRegNumber(e.target.value)}

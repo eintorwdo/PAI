@@ -15,6 +15,8 @@ import MainView from "./components/shared/MainView";
 import Plans from "./components/plan/plans";
 import Parkings from "./components/Parking/Parkings";
 import ReserveParking from "./components/Parking/ReserveParking";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App(props) {
     let user = Cookies.getJSON('user')
     let stores = {
