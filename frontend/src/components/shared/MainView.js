@@ -34,13 +34,13 @@ export default function MainView(props) {
             <Card className={classes.root} variant="outlined">
                 <CardContent onClick={() => history.push('/parkings')}>
                     <Typography variant="h5" component="h2">
-                        Parkings
+                        Parking lots
                     </Typography>
                     <Typography className={classes.pos} color="textSecondary">
                         ---
                     </Typography>
                     <Typography variant="body2" component="p">
-                        Choice place in parking
+                        Choose your parking lot
                     </Typography>
                 </CardContent>
             </Card>

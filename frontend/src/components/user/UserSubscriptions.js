@@ -59,14 +59,15 @@ export default class UserSubscriptions extends Component {
         return (
             <Container>
                 <Container style={classes.root} >
-                    {this.state.subscriptions.map(sub=>{
+                    {this.state.subscriptions?.map(sub=>{
                         return(
                             <Container key={sub._id} style={classes.car}>
-                                <Typography>Cost {sub.cost}</Typography>
+                                <Typography>Cost : {sub.cost}</Typography>
                                 <Typography>Start date : {sub.startDate.split("T")[0]}</Typography>
                                 <Typography>End date : {sub.endDate.split("T")[0]}</Typography>
                                 <Typography>Car : {sub.cars.make +" "+sub.cars.model}</Typography>
-                                <Typography>Parking : {sub.parking.city +" "+sub.parking.address}</Typography>
+                                <Typography>Parking lot : {sub.parking.city +" "+sub.parking.address}</Typography>
+                                <Typography>Space number : {sub.parkingSpace.spaceNumber}</Typography>
                             </Container>
                         )
                     })}

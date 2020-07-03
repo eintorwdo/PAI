@@ -5,7 +5,7 @@ async function addSubscriptionToUser(obj) {
     return await fetch(url,createFetchObject(obj))
 }
 async function getSubscriptionByUserID(id) {
-    let url = getLink(`api/subscirptions/${id}`)
+    let url = getLink(`api/subscriptions/${id}`)
     return await fetch(url,fetchObject)
 }
 

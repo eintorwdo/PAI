@@ -33,14 +33,13 @@ export default function CreateParkingForm(props) {
     const [address,setAddress] = useState("")
     const [city,setCity] = useState("")
     const [spaces,setSpaces] = useState(0)
-    const [freeSpaces,setFreeSpaces] = useState(0)
+    // const [freeSpaces,setFreeSpaces] = useState(0)
     const carraddinghandle = async (e) => {
         e.preventDefault()
         let obj = {
             city:city,
             address:address,
-            numberOfSpaces:spaces,
-            freeSpaces:freeSpaces
+            numberOfSpaces:spaces
         }
         let dane = await createParking(obj).then(request=>{
             if(request.status < 300)
@@ -56,7 +55,7 @@ export default function CreateParkingForm(props) {
     return (
         <Container className={classes.first}>
             <Container className={classes.avatar}>
-                <Typography variant='h5' gutterBottom>Add new parking</Typography>
+                <Typography variant='h5' gutterBottom>Add new parking lot</Typography>
                 <Avatar>
                     <LocalParkingIcon fontSize="large"/>
                 </Avatar>
@@ -91,7 +90,7 @@ export default function CreateParkingForm(props) {
                             style={{marginTop:"1rem"}}
                         />
                         <br/>
-                        <TextField
+                        {/* <TextField
                             id="standard-number"
                             label="Free parking spaces"
                             type="number"
@@ -99,7 +98,7 @@ export default function CreateParkingForm(props) {
                             onChange={(e)=>setFreeSpaces(parseInt(e.target.value))}
                             style={{marginTop:"1rem"}}
                         />
-                        <br/>
+                        <br/> */}
                         <Button type='submit'
                                 className={classes.formButton}
                                 variant='contained'

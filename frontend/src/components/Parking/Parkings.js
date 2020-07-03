@@ -41,8 +41,8 @@ export default class Parkings extends Component {
 
     render() {
         return (
-            <Container>
-                Parkings
+            <Container style={{marginTop: '15px'}}>
+                <h2 style={{fontWeight: 350}}>Parking lots:</h2>
                 <Grid container spacing={3}>
                     {this.state.parkings.map(park => {
                         return (

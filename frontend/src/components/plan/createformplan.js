@@ -28,7 +28,7 @@ export default function CreatePlanForm(props){
             <form onSubmit={(e) => createPlanhandle(e)}>
                 <TextField
                     id="standard-number"
-                    label="Plan duration in day"
+                    label="Plan duration in days"
                     type="number"
                     value={duration}
                     onChange={(e)=>setDuration(parseInt(e.target.value))}

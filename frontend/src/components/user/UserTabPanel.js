@@ -64,7 +64,7 @@ export default function UserTabPanel(props) {
                       indicatorColor="primary"
                       textColor="primary"
                       variant="fullWidth" aria-label="simple tabs example">
-                    <Tab label="User car's" {...a11yProps(0)} />
+                    <Tab label="User cars" {...a11yProps(0)} />
                     <Tab label="User subscriptions" {...a11yProps(1)} />
 
                 </Tabs>

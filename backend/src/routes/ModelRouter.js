@@ -290,12 +290,22 @@ router.post('/subscription', checkLoggedIn, validateNewSubscription, async (req,
         }
     }
 });
-router.get('/subscirptions/:userid', checkLoggedIn, async (req, res) => {
+router.get('/subscriptions/:userid', checkLoggedIn, async (req, res) => {
     if(req.user.role === 'ADMIN' || req.user.id === req.params.userid){
         try{
             const objectId = mongoose.Types.ObjectId(req.params.userid);
-            const subscriptions = await Subscription.find({userID: objectId});
-            res.status(200).json({subscriptions});
+            let subscriptions = await Subscription.find({userID: objectId});
+            let newSubs = [];
+            for(let el of subscriptions){
+                const lot = await ParkingLot.findById(el.lotID);
+                const parkingSpace = lot.parkingSpaces.filter(space => {
+                    return space._id.toString() === el.spaceID.toString()
+                });
+                let newSub = el.toObject();
+                newSub.parkingSpace = parkingSpace[0];
+                newSubs.push(newSub);
+            }
+            res.status(200).json({subscriptions: newSubs});
         }
         catch(e){
             res.status(500).json({error: e});

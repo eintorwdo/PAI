@@ -40,9 +40,9 @@ export default class UserCars extends Component {
                     {this.state.userCars.map(car=>{
                         return(
                             <Container style={classes.car}>
-                                <Typography>Producent {car.make}</Typography>
+                                <Typography>Car manufacturer : {car.make}</Typography>
                                 <Typography>Model : {car.model}</Typography>
-                                <Typography>Register number<br/>{car.regNumber}</Typography>
+                                <Typography>Registration number : {car.regNumber}</Typography>
                             </Container>
                         )
                     })}
