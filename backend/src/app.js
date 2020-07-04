@@ -43,3 +43,5 @@ dbConnect().then(connection => {
 }).catch(e => {
     console.log(e);
 });
+
+module.exports = app;
