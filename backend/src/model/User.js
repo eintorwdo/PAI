@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const Car = require('./Car.js');
+const Subscription = require('./Subscription.js');
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -49,6 +50,14 @@ UserSchema.methods.validPassword = function (password, cb) {
 UserSchema.pre('deleteOne', async function(next) {
     const userID = this.getFilter()["_id"];
     await Car.deleteMany({userID});
+    await Subscription.deleteMany({userID});
+    next();
+});
+
+UserSchema.pre('findOneAndDelete', async function(next) {
+    const userID = this.getFilter()["_id"];
+    await Car.deleteMany({userID});
+    await Subscription.deleteMany({userID});
     next();
 });
 

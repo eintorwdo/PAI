@@ -29,6 +29,7 @@
     "start": "cross-env NODE_ENV=test nodemon -- ./src/app.js"
   },
   "jest": {
+    "testEnvironment": "node",
     "setupFiles": [
       "./jest-config.js"
     ],
