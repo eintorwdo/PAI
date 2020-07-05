@@ -14,11 +14,13 @@ const subFKsExist = async (lotID, carID, planID, userID) => {
     if(!car){
         errors.push({message: 'Car not found'});
     }
+    else{
+        if(!car.userID.equals(userID)){
+            errors.push({message: 'Car does not belong to the request sender'});
+        }
+    }
     if(!plan){
         errors.push({message: 'Subscription plan not found'});
-    }
-    if(!car.userID.equals(userID)){
-        errors.push({message: 'Car does not belong to the request sender'});
     }
     return {errors, documents: {parkingLot, car, plan}};
 }

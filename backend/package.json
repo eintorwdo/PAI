@@ -19,12 +19,23 @@
     "validator": "^13.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --forceExit",
     "start-prod": "node ./src/app.js",
     "start": "cross-env NODE_ENV=test nodemon -- ./src/app.js"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": [
+      "./jest-config.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "./node_modules/"
+    ]
   },
   "author": "",
   "license": "ISC"

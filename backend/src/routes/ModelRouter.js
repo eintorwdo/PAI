@@ -239,7 +239,7 @@ router.post('/parkinglot', checkLoggedIn, checkAdmin, validateNewParkingLot, asy
 
 router.post('/subscription', checkLoggedIn, validateNewSubscription, async (req, res) => {
     const subscription = await Subscription.findOne({userID: req.user.id, lotID: req.body.lotID, carID: req.body.carID});
-    if(subscription){
+    if(subscription && subscription.expired === false){
         res.status(400).json({error: "You have already purchased a subscription for this parking lot and car"});
     }
     else{
